@@ -6,7 +6,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Dog(models.Model):
     name = models.CharField(max_length=200)
     age = models.IntegerField()
-    breed = models.ForeignKey('Breed', on_delete=models.CASCADE) #models.CharField(max_length=200)
+    breed = models.ForeignKey(
+        'Breed',
+        related_name='breeds',
+        on_delete=models.CASCADE) #models.CharField(max_length=200)
     gender = models.CharField(max_length=200)
     color = models.CharField(max_length=200)
     favoritefood = models.CharField(max_length=200)
@@ -17,10 +20,10 @@ class Dog(models.Model):
         return self.name
 
 class Breed(models.Model):    
-    Tiny = 't'
-    Small = 's'
-    Medium = 'm'
-    Large = 'l'
+    Tiny = 'tiny'
+    Small = 'small'
+    Medium = 'medium'
+    Large = 'large'
     Size_Choices = (
         (Tiny, 'Tiny'),
         (Small, 'Small'),
